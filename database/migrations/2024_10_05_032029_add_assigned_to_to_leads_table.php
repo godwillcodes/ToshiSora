@@ -23,10 +23,11 @@ return new class extends Migration
     public function down()
 {
     Schema::table('leads', function (Blueprint $table) {
-        // Check if the column exists before dropping it
-        if (Schema::hasColumn('leads', 'assigned_to')) {
-            $table->dropColumn('assigned_to');
-        }
+        // Drop the foreign key constraint first
+        $table->dropForeign(['assigned_to']);
+        
+        // Then drop the column
+        $table->dropColumn('assigned_to');
     });
 }
 };

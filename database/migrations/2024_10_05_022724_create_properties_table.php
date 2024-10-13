@@ -22,11 +22,16 @@ return new class extends Migration
             $table->integer('bedrooms');
             $table->integer('bathrooms');
             $table->integer('square_feet');
+            $table->string('youtube_video_url')->nullable();
+            $table->json('amenities')->nullable();
             $table->json('images');
             $table->foreignId('listed_by')->constrained('users');
             $table->boolean('is_verified')->default(false);
+            $table->decimal('latitude', 10, 8);  
+            $table->decimal('longitude', 11, 8); 
             $table->timestamps();
         });
+        
     }
 
     /**
